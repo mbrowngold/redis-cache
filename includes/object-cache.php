@@ -354,6 +354,7 @@ function wp_cache_add_non_persistent_groups( $groups ) {
 /**
  * Object cache class definition
  */
+#[AllowDynamicProperties]
 class WP_Object_Cache {
     /**
      * The Redis client.
