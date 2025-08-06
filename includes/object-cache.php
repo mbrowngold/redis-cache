@@ -2410,7 +2410,7 @@ LUA;
         }
 
         try {
-            $value = (int) $this->parse_redis_response( $this->redis->get( $derived_key ) );
+            $value = (int) $this->parse_redis_response( $this->maybe_unserialize( $this->redis->get( $derived_key )) );
             $value += $offset;
             $result = $this->parse_redis_response( $this->redis->set( $derived_key, $this->maybe_serialize( $value ) ) );
 
@@ -2472,7 +2472,7 @@ LUA;
         }
 
         try {
-            $value = (int) $this->parse_redis_response( $this->redis->get( $derived_key ) );
+            $value = (int) $this->parse_redis_response( $this->maybe_unserialize( $this->redis->get( $derived_key ) ) );
             $value -= $offset;
             $result = $this->parse_redis_response( $this->redis->set( $derived_key, $this->maybe_serialize( $value ) ) );
 
