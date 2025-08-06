@@ -1,10 +1,9 @@
 # Changelog
 
-## Unreleased
+## 2.6.4
 
-- Prevent rare deprecation warning when setting up new site
-- Prevent PHP 8.2 deprecation in `wp-activate.php`
-- Fixed (in|de)crement not working with igbinary
+- Prevent some deprecation notices
+- Fixed an issue with (in|de)crement cache values
 
 ## 2.6.3
 

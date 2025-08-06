@@ -61,6 +61,11 @@ Redis Object Cache has various WP CLI commands, for more information run `wp hel
 
 == Changelog ==
 
+= 2.6.4 =
+
+- Prevent some deprecation notices
+- Fixed an issue with (in|de)crement cache values
+
 = 2.6.3 =
 
 - Switch to `E_USER_DEPRECATED` instead of `_doing_it_wrong()` in drop-in
