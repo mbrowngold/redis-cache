@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- Changed `wp_cache_*()` function signatures to match core
+
 ## 2.6.5
 
 - Fixed an issue with (in|de)crement cache values when using igbinary
