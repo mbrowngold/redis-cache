@@ -2,6 +2,7 @@
 
 ## Unreleased
 - Changed `wp_cache_*()` function signatures to match core
+- Removed deprecated HHVM support
 - Removed deprecated `WP_REDIS_SERIALIZER` constant
 
 ## 2.6.5
