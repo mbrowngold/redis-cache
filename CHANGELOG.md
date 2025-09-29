@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.7.0
+
+- Preserve key TTL when calling (in|de)crement methods
+- Updated `wp_cache_*()` function signatures to match core
+- Removed deprecated HHVM support
+- Removed deprecated `WP_REDIS_SERIALIZER` constant
+
 ## 2.6.5
 
 - Fixed an issue with (in|de)crement cache values when using igbinary
