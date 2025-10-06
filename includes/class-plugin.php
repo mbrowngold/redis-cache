@@ -1216,7 +1216,7 @@ HTML;
     public function maybe_delete_transients( $should_delete ) {
         global $wpdb;
 
-        if ( ! $result ) {
+        if ( ! $should_delete ) {
             return;
         }
 
