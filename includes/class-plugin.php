@@ -1249,17 +1249,15 @@ HTML;
 
         foreach ( $sites as $id ) {
             try {
-                switch_to_blog( $id );
+                $prefix = $wpdb->get_blog_prefix( $id );
 
                 $wpdb->query( $wpdb->prepare(
-                    "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s", '_transient_%'
+                    "DELETE FROM {$prefix}options WHERE option_name LIKE %s", '_transient_%'
                 ) );
             } catch ( Exception $error ) {
                 error_log($error->getMessage());
             }
         }
-
-        restore_current_blog();
     }
 
     /**
