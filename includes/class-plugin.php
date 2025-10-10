@@ -1220,17 +1220,46 @@ HTML;
             return;
         }
 
+        if ( is_multisite() ) {
+            $this->delete_multisite_transients();
+
+            return;
+        }
+
         $wpdb->query( $wpdb->prepare(
             "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s",
             '_transient_%',
             '_site_transient_%'
         ) );
+    }
 
-        if ( is_multisite() ) {
-            $wpdb->query( $wpdb->prepare(
-                "DELETE FROM {$wpdb->sitemeta} WHERE meta_key LIKE %s", '_site_transient_%'
-            ) );
+    /**
+     * Deletes the transients for all blogs on the multisite network.
+     *
+     * @return void
+     */
+    protected function delete_multisite_transients() {
+        global $wpdb;
+
+        $wpdb->query( $wpdb->prepare(
+            "DELETE FROM {$wpdb->sitemeta} WHERE meta_key LIKE %s", '_site_transient_%'
+        ) );
+
+        $sites = get_sites([ 'fields' => 'ids', 'number' => 0 ]);
+
+        foreach ( $sites as $id ) {
+            try {
+                switch_to_blog( $id );
+
+                $wpdb->query( $wpdb->prepare(
+                    "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s", '_transient_%'
+                ) );
+            } catch ( Exception $error ) {
+                error_log($error->getMessage());
+            }
         }
+
+        restore_current_blog();
     }
 
     /**
