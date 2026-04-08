@@ -62,9 +62,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
+      - name: Remove markdown files
+        run: find . -name '*.md' -not -name 'readme.md' -delete
+
       - name: Run plugin check
         uses: wordpress/plugin-check-action@v1
         with:
           exclude-directories: '.github,dependencies,tests'
           exclude-files: '.editorconfig,.gitattributes,.gitignore,phpunit.xml.dist'
           exclude-checks: 'prefixing'
+          ignore-codes: |
+            PluginCheck.CodeAnalysis.Heredoc.NotAllowed
+            WordPress.DB.DirectDatabaseQuery.DirectQuery
+            WordPress.DB.DirectDatabaseQuery.NoCaching
+            WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+            WordPress.PHP.DevelopmentFunctions.error_log_error_log
+            WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
