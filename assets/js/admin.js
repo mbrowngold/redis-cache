@@ -153,8 +153,9 @@
                     labels: {
                         formatter: function ( value ) {
                             var i = value === 0 ? 0 : Math.floor( Math.log( value ) / Math.log( 1024 ) );
+                            var decimals = i < 2 ? 0 : 2;
 
-                            return parseFloat( (value / Math.pow( 1024, i ) ).toFixed( i ? 2 : 0 ) ) + ' ' + ['B', 'KB', 'MB', 'GB', 'TB'][i];
+                            return parseFloat( (value / Math.pow( 1024, i ) ).toFixed( decimals ) ) + ' ' + ['B', 'KB', 'MB', 'GB', 'TB'][i];
                         },
                     },
                 },
@@ -162,7 +163,8 @@
                     custom: function ({ series, seriesIndex, dataPointIndex, w }) {
                         var value = series[0][ dataPointIndex ];
                         var i = value === 0 ? 0 : Math.floor( Math.log( value ) / Math.log( 1024 ) );
-                        var bytes = parseFloat( (value / Math.pow( 1024, i ) ).toFixed( i ? 2 : 0 ) ) + ' ' + ['B', 'KB', 'MB', 'GB', 'TB'][i];
+                        var decimals = i < 2 ? 0 : 2;
+                        var bytes = parseFloat( (value / Math.pow( 1024, i ) ).toFixed( decimals ) ) + ' ' + ['B', 'KB', 'MB', 'GB', 'TB'][i];
 
                         return [
                             rediscache.templates.tooltip_title({
