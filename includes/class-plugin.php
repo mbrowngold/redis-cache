@@ -424,13 +424,15 @@ class Plugin {
             return;
         }
 
-        wp_enqueue_script(
-            'redis-cache-charts',
-            plugins_url( 'assets/js/apexcharts.min.js', WP_REDIS_FILE ),
-            [],
-            WP_REDIS_VERSION,
-            true
-        );
+        if ( ! defined( 'WP_REDIS_DISABLE_CHARTS' ) || ! WP_REDIS_DISABLE_CHARTS ) {
+            wp_enqueue_script(
+                'redis-cache-charts',
+                plugins_url( 'assets/js/apexcharts.min.js', WP_REDIS_FILE ),
+                [],
+                WP_REDIS_VERSION,
+                true
+            );
+        }
 
         if ( ! $this->get_redis_status() ) {
             return;
