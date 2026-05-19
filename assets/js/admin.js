@@ -312,9 +312,13 @@
     };
 
     var render_chart = function ( id ) {
-        if ( rediscache.chart ) {
-            rediscache.chart.updateOptions( rediscache.charts[ id ] );
+        if ( ! rediscache.charts[ id ] ) {
             return;
+        }
+
+        if ( rediscache.chart ) {
+            rediscache.chart.destroy();
+            root.rediscache.chart = null;
         }
 
         var chart = new ApexCharts(
