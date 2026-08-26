@@ -2,12 +2,12 @@
 
 ## Unreleased
 
-- Upgraded bundled Predis to v2.4.1
 - Allow Predis v3.0 as a Composer dependency
+- Upgraded bundled Predis library to v2.4.1
+- Upgraded ApexCharts to v4.7.0
 - Indicate when the cache is disabled via the `WP_REDIS_DISABLED` constant
 - Added `WP_REDIS_CHART_COLOR` constant
 - Added `WP_REDIS_LOAD_APEXCHARTS` constant
-- Upgrade ApexCharts to v4.7.0
 - Fixed bulk cache methods leaving the connection stuck in pipeline mode
 
 ## 2.8.0
